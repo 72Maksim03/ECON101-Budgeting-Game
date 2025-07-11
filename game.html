@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Budgeting Game</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    .selected {
+      border: 2px solid green;
+    }
+    .highlight-red {
+      color: red;
+      font-weight: bold;
+    }
+    .highlight-green {
+      color: green;
+      font-weight: bold;
+    }
+    .highlight-blue {
+      color: blue;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container my-4">
+    <h1 class="mb-3">💰 Budgeting Game</h1>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-header">📊 Status</div>
+          <div class="card-body">
+            <p>Month: <span id="month">1</span>, Week: <span id="week">1</span></p>
+            <p>Salary: $<span id="salary">2000</span></p>
+            <p>Balance: <span class="highlight-green">$<span id="balance">2000</span></span></p>
+            <p>Debt: <span class="highlight-red">$<span id="debt">0</span></span></p>
+            <p>Health: <span class="highlight-red" id="health">100</span></p>
+            <p>Entertainment: <span class="highlight-green" id="entertainment">100</span></p>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header">💹 Investments</div>
+          <div class="card-body">
+            <p>Invested: $<span class="highlight-blue" id="invested">0</span></p>
+            <p>Return: $<span class="highlight-blue" id="investment-return">0</span>/month</p>
+            <button class="btn btn-sm btn-outline-primary" onclick="invest()">Invest $200</button>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header">🏪 Shop</div>
+          <div class="card-body">
+            <button
+              class="btn btn-sm btn-outline-success"
+              onclick="buyGym()"
+            >
+              🏋️ Gym (+5 Health/week, $20/month)
+            </button><br />
+            <button
+              class="btn btn-sm btn-outline-info mt-1"
+              onclick="buyStreaming()"
+            >
+              📺 Streaming (+5 Entertainment/week, $15/month)
+            </button><br />
+            <button
+              class="btn btn-sm btn-outline-warning mt-1"
+              onclick="hasPet = true; log('🐶 Pet adopted')"
+            >
+              🐶 Pet (+10 Entertainment/week, -$50/month)
+            </button>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header">🏠 Housing Options</div>
+          <div class="card-body" id="housing-options">
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              onclick="chooseHousing('small', this)"
+            >
+              Small ($600)
+            </button>
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              onclick="chooseHousing('standard', this)"
+            >
+              Standard ($800)
+            </button>
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              onclick="chooseHousing('luxury', this)"
+            >
+              Luxury ($1200)
+            </button>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header">🚗 Transport Options</div>
+          <div class="card-body" id="transport-options">
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              onclick="chooseTransport('public', this)"
+            >
+              Public ($100)
+            </button>
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              onclick="chooseTransport('used', this)"
+            >
+              Used Car ($200 + $50 maint, $3000 one-time)
+            </button>
+            <button
+              class="btn btn-sm btn-outline-secondary"
+              onclick="chooseTransport('new', this)"
+            >
+              New Car ($400 + $20 maint, $8000 one-time)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-header">🧠 Actions</div>
+          <div class="card-body">
+            <button class="btn btn-outline-success mb-2" onclick="entertain()">
+              🎭 Entertainment ($100)
+            </button>
+            <button
+              class="btn btn-outline-danger mb-2"
+              onclick="goToHospital()"
+            >
+              🏥 Go to Hospital ($500)
+            </button>
+            <button class="btn btn-outline-warning mb-2" onclick="takeLoan()">
+              💸 Take $500 Loan
+            </button>
+            <button class="btn btn-outline-info mb-2" onclick="payLoan()">
+              💵 Pay $100 Loan
+            </button>
+            <button class="btn btn-primary mt-3" onclick="nextWeek()">
+              ➡️ Next Week
+            </button>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-header">📜 Event Log (last 5)</div>
+          <div class="card-body" id="event-log"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
